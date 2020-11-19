@@ -9,6 +9,9 @@ public interface PricingStrategy {
     final int VALENTINE = 0; // For ValentinesDay Strategy
     final int MOTHER = 1; // For MothersDay Strategy
 
+    public abstract List<Product> applyDiscount(List<Product> items);
     public abstract float calculateTotal(List<Product> items);
+
+
 
 }

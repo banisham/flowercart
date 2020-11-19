@@ -35,6 +35,7 @@ public class ShoppingCart {
 
     public float checkOut(){
         float totalCost = 0;
+        items = this.pricingStrategy.applyDiscount(items);
         printItems();
         totalCost = this.pricingStrategy.calculateTotal(items);
         System.out.println("--------------------------------------------------------------");
@@ -46,7 +47,9 @@ public class ShoppingCart {
 
     public void printItems(){
         for (Product item: items){
-            System.out.println(" Product is " + item.getType() + " and the Cost is " + item.getPrice());
+            System.out.println(" Product: " + item.getType() + "\t | Original Price: " + item.getPrice()
+                    + "\t | Discounted Price: " + item.getDiscountedPrice()
+                    + "\t | Discount Applied: " + item.getDiscountPercent());
 
         }
     }
