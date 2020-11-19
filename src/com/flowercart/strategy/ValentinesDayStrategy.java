@@ -5,29 +5,30 @@ import com.flowercart.entity.Product;
 
 import java.util.List;
 
-public class ValentinesDayStrategy implements PricingStrategy {
-    @Override
-    public float calculateTotal(List<Product> items) {
-        float totalCost = 0;
-        for (Product item : items) {
-            float costOfProduct = item.getDiscountedPrice();
-            totalCost = totalCost + costOfProduct;
-        }
-        return totalCost;
+public class ValentinesDayStrategy extends BasePricingStrategy {
+    String discountPercent = "15%";
 
-    }
+
 
     @Override
     public List<Product> applyDiscount(List<Product> items) {
         float discountedPrice = 0;
+        double discountValue = this.parseDiscountPercent(discountPercent)/100;
         for (Product item : items) {
             float costOfProduct = item.getPrice();
             if (item instanceof Flower) {
-                discountedPrice = (float) (costOfProduct + (costOfProduct * 0.15));
+                discountedPrice = (float) (costOfProduct + (costOfProduct * discountValue));
                 item.setDiscountedPrice(discountedPrice);
-                item.setDiscountPercent("15%");
+                item.setDiscountPercent(discountPercent);
+            }
+            else{
+                item.setDiscountedPrice(item.getPrice());
+                item.setDiscountPercent("0%");
             }
         }
         return items;
     }
+
+
+
 }
