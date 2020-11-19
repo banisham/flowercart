@@ -1,6 +1,7 @@
 package com.flowercart.strategy;
 
 import com.flowercart.entity.Product;
+import com.flowercart.utils.CartUtils;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ public class RegularStrategy extends BasePricingStrategy {
     @Override
     public List<Product> applyDiscount(List<Product> items) {
         float discountedPrice = 0;
-        double discountValue = this.parseDiscountPercent(discountPercent)/100;
+        double discountValue = CartUtils.parseDiscountPercent(discountPercent)/100;
         for (Product item : items) {
             float costOfProduct = item.getPrice();
             discountedPrice = (float) (costOfProduct + (costOfProduct * discountValue));

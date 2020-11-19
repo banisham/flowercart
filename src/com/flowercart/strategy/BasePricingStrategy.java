@@ -9,7 +9,6 @@ public abstract class BasePricingStrategy implements PricingStrategy {
     public abstract List<Product> applyDiscount(List<Product> items);
 
 
-
     @Override
     public float calculateTotal(List<Product> items) {
         float totalCost = 0;
@@ -21,10 +20,6 @@ public abstract class BasePricingStrategy implements PricingStrategy {
 
     }
 
-    public double parseDiscountPercent(String discountPercent){
-        double discountValue =  Double.valueOf(discountPercent.substring(0,discountPercent.indexOf("%")));
-//      System.out.println("discountValue-------" + discountValue);
-        return discountValue;
-    }
+
 
 }
